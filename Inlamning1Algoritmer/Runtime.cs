@@ -23,10 +23,12 @@ namespace Inlamning1Algoritmer
         //without repeating it many times as it will be recalled internally
         public void MergeSort(int[] numbers)
         {
+            //Starting the execution´s timer
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
             MergeSort(numbers, 0, numbers.Length - 1);
 
+            //Stopping the execution´s timer
             watch.Stop();
             var mergeSortExeecutionTime = watch.ElapsedMilliseconds;
             Print(numbers, "Merge", mergeSortExeecutionTime);
@@ -48,13 +50,14 @@ namespace Inlamning1Algoritmer
         {
             int[] temp = new int[numbers.Length];
 
-            int i, eol, num, pos;
+            int i, dim, num, pos;
 
-            eol = (mid - 1);
+            //dim is allways mid-1 to compare it with the left side therefore naming it backwards mid => All Copyrights reserved to Sami :-D
+            dim = (mid - 1);
             pos = left;
             num = (right - left + 1);
 
-            while ((left <= eol) && (mid <= right))
+            while ((left <= dim) && (mid <= right))
             {
                 if (numbers[left] <= numbers[mid])
                     temp[pos++] = numbers[left++];
@@ -63,7 +66,7 @@ namespace Inlamning1Algoritmer
                     temp[pos++] = numbers[mid++];
             }
 
-            while (left <= eol)
+            while (left <= dim)
             {
                 temp[pos++] = numbers[left++];
             }
@@ -84,7 +87,9 @@ namespace Inlamning1Algoritmer
         #region BubbleSort
         public void BubbleSort(int[] numbers)
         {
+            //Starting the execution´s timer
             var watch = System.Diagnostics.Stopwatch.StartNew();
+
             for (int i = 0; i < numbers.Length; i++)
             {               
                 for (int j = numbers.Length -1; j  > 0; j--)
@@ -97,6 +102,8 @@ namespace Inlamning1Algoritmer
                     }
                 }
             }
+
+            //Stopping the execution´s timer
             watch.Stop();
             var bubbleSortExeecutionTime = watch.ElapsedMilliseconds;
             Print(numbers, "Bubble", bubbleSortExeecutionTime);
