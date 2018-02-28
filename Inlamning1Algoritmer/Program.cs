@@ -14,14 +14,9 @@ namespace Inlamning1Algoritmer
         {
             var runtime = new Runtime();
             var numbers = runtime.ReadNumbersFromFile();
-            var bubbleSortedNumbers = runtime.BubbleSort(numbers);
-            Console.WriteLine("Bubble sorted:");
-            runtime.Print(bubbleSortedNumbers);
+            runtime.BubbleSort(numbers);
+            runtime.MergeSort(numbers);            
+            Console.ForegroundColor = ConsoleColor.White;
         }
-
-       
-
-
-
     }
 }
