@@ -18,6 +18,7 @@ namespace Inlamning1Algoritmer
             return Array.ConvertAll(data, int.Parse);
         }
 
+
         #region MergeSort
         //Added this function just to be able to print the results out 
         //without repeating it many times as it will be recalled internally
@@ -110,6 +111,53 @@ namespace Inlamning1Algoritmer
         }
         #endregion
 
+        #region QuickSort
+        internal void QuickSort(int[] numbers)
+        {
+            //Starting the execution´s timer
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            QuickSort(numbers, 0, numbers.Length - 1);
+            watch.Stop();
+            var quickSortExeecutionTime = watch.ElapsedMilliseconds;
+            Print(numbers, "Quick", quickSortExeecutionTime);
+        }
+        internal void QuickSort(int[] numbers, int left, int right)
+        {
+            
+
+            if (left < right)
+            {
+                int index = Partition(numbers, left, right);
+                QuickSort(numbers, left, index - 1);
+                QuickSort(numbers, index + 1, right);
+            }
+           
+
+        }
+        private int Partition(int[] numbers, int left, int right)
+        {
+            int pivot = numbers[right];
+            int temp;
+
+            int i = left;
+            for (int j = left; j < right; j++)
+            {
+                if (numbers[j] <= pivot)
+                {
+                    temp = numbers[j];
+                    numbers[j] = numbers[i];
+                    numbers[i] = temp;
+                    i++;
+                }
+            }
+
+            numbers[right] = numbers[i];
+            numbers[i] = pivot;
+
+            return i;
+        }
+        #endregion
+
         public void Print(int[] numbers, string type, Int64 excutionTime)
         {
             if (type == "Bubble")
@@ -122,6 +170,11 @@ namespace Inlamning1Algoritmer
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Merge sorted:   (Execution time: {0} ms)", excutionTime);
+            }
+            else if (type == "Quick")
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Quick sorted:   (Execution time: {0} ms)", excutionTime);
             }
             foreach(var number in numbers)
             {
