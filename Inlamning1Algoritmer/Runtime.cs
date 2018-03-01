@@ -128,7 +128,8 @@ namespace Inlamning1Algoritmer
             if (left < right)
             {
                 int index = Partition(numbers, left, right);
-                QuickSort(numbers, left, index - 1);
+
+                QuickSort(numbers, left, index - 1);                
                 QuickSort(numbers, index + 1, right);
             }
            
